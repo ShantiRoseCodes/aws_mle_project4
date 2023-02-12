@@ -31,3 +31,16 @@ estimator = PyTorch(
 ![Endpoint created](endpointnotebook.png)
 ![Endpoint in Inferences](endpoint.png)
 ![Endpoint Details](endpointdetails.png)
+
+## Multiple Instance Training & Deployment
+The time it took for the model to be trained was no different from that of the singular instance, however, the model with 3 instances did a better job at classifying the image, considering that the actual image has a label of 11.
+![Comparison of time spent training](instances_comparison.png)
+![Multiple Instance Endpoint Creation](mi_endpoint_creation.png)
+![Multiple Instance Endpoint](mi_endpoint.png)
+
+```Python
+pred[0]
+# single instance => 28
+# multiple instance => 11
+```
+
