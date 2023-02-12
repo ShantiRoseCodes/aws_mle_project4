@@ -34,6 +34,23 @@ estimator = PyTorch(
 
 ## Multiple Instance Training & Deployment
 The time it took for the model to be trained was no different from that of the singular instance, however, the model with 3 instances did a better job at classifying the image, considering that the actual image has a label of 11.
+
+```Python
+mi_estimator = PyTorch(
+    entry_point='hpo.py',
+    base_job_name='multi-dog-pytorch',
+    role=role,
+    instance_count=3,
+    instance_type='ml.m5.xlarge',
+    framework_version='1.4.0',
+    py_version='py3',
+    hyperparameters=hyperparameters,
+    ## Debugger and Profiler parameters
+    rules = rules,
+    debugger_hook_config=hook_config,
+    profiler_config=profiler_config,
+)
+```
 ![Comparison of time spent training](instances_comparison.png)
 ![Multiple Instance Endpoint Creation](mi_endpoint_creation.png)
 ![Multiple Instance Endpoint](mi_endpoint.png)
