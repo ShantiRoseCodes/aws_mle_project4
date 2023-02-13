@@ -77,7 +77,27 @@ After going through the prices of these options and keeping in mind the budget g
 
 Among all the instances that is required by the AMI, this has the lowest cost for both on-demand and spot instances. As the use of spot instances have a limit and requesting for an increase takes time, having the option to use either spot or on-demand instances for a project that has a tight deadline without breaking the budget is of high importance.
 
-[Spot vs on-demand pricing](https://aws.amazon.com/ec2/spot/pricing/)
+[See "Spot vs on-demand pricing"](https://aws.amazon.com/ec2/spot/pricing/)
 
 ![Model saved in EC2 instance](model_saved.png)
 
+## EC2 script vs hpo script
+
+![EC2 vs hpo](ec2_hpo_compare.png)
+
+The main difference between the hpo.py script and the ec2train1.py script lies in the way the arguments and hyperparameters are introduced to the model. In the ec2train1.py script, the hyperparameters and arguments are declared at the end of the script whereas the arguments and hyperparameters of the hpo.py script are declared within the Sagemaker notebook instance and are introduced to the script using ```parser.argparse.ArgumentParser()``` and a main function.
+
+```Python
+if __name__=='__main__':
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--learning_rate', type=float)
+    parser.add_argument('--batch_size', type=int)
+    parser.add_argument('--data', type=str, default=os.environ['SM_CHANNEL_TRAINING'])
+    parser.add_argument('--model_dir', type=str, default=os.environ['SM_MODEL_DIR'])
+    parser.add_argument('--output_dir', type=str, default=os.environ['SM_OUTPUT_DATA_DIR'])
+    
+    args=parser.parse_args()
+    print(args)
+    
+    main(args)
+```
