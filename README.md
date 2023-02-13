@@ -76,3 +76,8 @@ Unlike the AMI used in the demo, the Pytorch environment cannot be activated usi
 After going through the prices of these options and keeping in mind the budget given for this module, the best option was a g4dn.xlarge instance which costs $0.3418 for on-demand instances and $0.1578 for spot instances.
 
 Among all the instances that is required by the AMI, this has the lowest cost for both on-demand and spot instances. As the use of spot instances have a limit and requesting for an increase takes time, having the option to use either spot or on-demand instances for a project that has a tight deadline without breaking the budget is of high importance.
+
+[Spot vs on-demand pricing](https://aws.amazon.com/ec2/spot/pricing/)
+
+![Model saved in EC2 instance](model_saved.png)
+
