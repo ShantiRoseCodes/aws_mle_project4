@@ -33,6 +33,7 @@ estimator = PyTorch(
 ![Endpoint Details](endpointdetails.png)
 
 ## Multiple Instance Training & Deployment
+
 The time it took for the model to be trained was no different from that of the singular instance, however, the model with 3 instances did a better job at classifying the image, considering that the actual image has a label of 11.
 
 ```Python
@@ -51,6 +52,7 @@ mi_estimator = PyTorch(
     profiler_config=profiler_config,
 )
 ```
+
 ![Comparison of time spent training](instances_comparison.png)
 ![Multiple Instance Endpoint Creation](mi_endpoint_creation.png)
 ![Multiple Instance Endpoint](mi_endpoint.png)
@@ -61,3 +63,16 @@ pred[0]
 # multiple instance => 11
 ```
 
+## EC2 Training
+
+Unlike the demo shown in the module, there were only 3 choices for Deep Learning AMIs and only 2 of them have an environment that supports Pytorch packages and dependencies.
+
+Unlike the AMI used in the demo, the Pytorch environment cannot be activated using instances other than: G3, P3, P3dn, P4d, G5, G4dn.
+
+[AWS Deep Learning AMI GPU PyTorch 1.12 (Amazon Linux 2)](https://aws.amazon.com/releasenotes/aws-deep-learning-ami-gpu-pytorch-1-12-amazon-linux-2/)
+
+[AWS Deep Learning AMI GPU PyTorch 1.13 (Amazon Linux 2)](https://aws.amazon.com/releasenotes/aws-deep-learning-ami-gpu-pytorch-1-13-amazon-linux-2/)
+
+After going through the prices of these options and keeping in mind the budget given for this module, the best option was a g4dn.xlarge instance which costs $0.3418 for on-demand instances and $0.1578 for spot instances.
+
+Among all the instances that is required by the AMI, this has the lowest cost for both on-demand and spot instances. As the use of spot instances have a limit and requesting for an increase takes time, having the option to use either spot or on-demand instances for a project that has a tight deadline without breaking the budget is of high importance.
