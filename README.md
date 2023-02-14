@@ -28,7 +28,7 @@ estimator = PyTorch(
 )
 ```
 
-![Endpoint created](.photos/endpointnotebook.png)
+![Endpoint created](./photos/endpointnotebook.png)
 ![Endpoint in Inferences](./photos/endpoint.png)
 ![Endpoint Details](./photos/endpointdetails.png)
 
